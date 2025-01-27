@@ -209,6 +209,11 @@ function M.show(namespace, bufnr, diagnostics, opts, source)
       end
     end
 
+    local win_width = vim.api.nvim_win_get_width(0)
+    table.insert(virt_lines, {
+      { string.rep("-", win_width), "LineNr" }
+    })
+
     vim.api.nvim_buf_set_extmark(bufnr, namespace, lnum, 0, { virt_lines = virt_lines })
   end
 end
