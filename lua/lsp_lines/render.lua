@@ -209,6 +209,11 @@ function M.show(namespace, bufnr, diagnostics, opts, source)
       end
     end
 
+    -- if in nvim in visual mode then return empty table
+    if vim.api.nvim_get_mode().mode == "v" then
+      return
+    end
+
     local win_width = vim.api.nvim_win_get_width(0)
     table.insert(virt_lines, {
       { string.rep("-", win_width), "LineNr" }
